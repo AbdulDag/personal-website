@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abdulhamid Daghistani's Website</title>
+    <meta name="description" content="Abdulhamid Daghistani — Mechatronics Engineering @ University of Guelph. ML, computer vision, and systems." />
+    <style>
+      :root {
+        font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+        line-height: 1.5;
+        font-weight: 400;
+        color: #213547;
+        background-color: #ffffff;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body { margin: 0; min-width: 320px; }
+      h1, h2, h3, p { margin: 0; }
+      a { color: inherit; text-decoration: inherit; }
+
+      #root { margin: 0 auto; width: 100%; text-align: center; }
+
+      .page { min-height: 100vh; background: #ffffff; padding: 2rem; }
+      .container { max-width: 72rem; margin: 0 auto; }
+
+      .about { margin-top: 7.5rem; margin-bottom: 6.5rem; }
+      .about h1 { font-size: 2.25rem; line-height: 2.5rem; color: #000; font-weight: 700; margin-bottom: 1rem; }
+      .about-inner { max-width: 42rem; margin: 0 auto; }
+      .about p { color: #374151; font-size: 1.125rem; line-height: 1.75rem; margin-bottom: 1rem; }
+      .links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+      .links a { color: #374151; font-weight: 500; transition: color 150ms; }
+      .links a:hover { color: #000; }
+
+      .secret {
+        margin-top: 1.25rem;
+        font: inherit;
+        font-size: 0.75rem;
+        color: #9ca3af;
+        background: none;
+        border: 1px dashed #d1d5db;
+        border-radius: 9999px;
+        padding: 0.25rem 0.75rem;
+        cursor: pointer;
+        transition: color 150ms, border-color 150ms;
+      }
+      .secret:hover { color: #000; border-color: #000; }
+
+      .section-title { font-size: 1.5rem; line-height: 2rem; color: #000; font-weight: 700; margin-bottom: 2rem; }
+
+      .grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+      @media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+      @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+      .card {
+        display: block;
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        transition: box-shadow 150ms;
+      }
+      .card:hover { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+      .card-media { position: relative; aspect-ratio: 16 / 9; background: #f3f4f6; }
+      .card-media img, .card-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .card-media .placeholder {
+        width: 100%; height: 100%;
+        display: flex; align-items: center; justify-content: center;
+        padding: 1rem; color: #9ca3af; font-size: 1.25rem; font-weight: 600;
+      }
+      .card-body { padding: 1rem; }
+      .card-body h3 { color: #374151; font-size: 1rem; line-height: 1.5rem; font-weight: 400; }
+      .card-body p { color: #4b5563; font-size: 0.875rem; line-height: 1.25rem; white-space: pre-line; }
+
+      /* transition into the classic site — matches its boot screen */
+      #warp {
+        position: fixed; inset: 0; z-index: 9999;
+        background: #050505;
+        display: flex; align-items: center; justify-content: center;
+        color: #79d2e6; font-family: 'Courier New', Courier, monospace;
+        font-size: 1.2rem; letter-spacing: 4px; text-align: center; padding: 1rem;
+        opacity: 0; pointer-events: none;
+        transition: opacity 600ms ease;
+      }
+      #warp.on { opacity: 1; pointer-events: auto; }
+      @media (prefers-reduced-motion: reduce) { #warp { transition: none; } }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="page">
+        <div class="container">
+          <section class="about">
+            <h1>Abdulhamid Daghistani</h1>
+            <div class="about-inner">
+              <p>I build machines that see and think</p>
+              <div class="links">
+                <a href="https://github.com/AbdulDag" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://linkedin.com/in/abdulhamid-daghistani" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:Dagabdoo@gmail.com">Email</a>
+              </div>
+              <button class="secret" id="secret" type="button">super secret button</button>
+            </div>
+          </section>
+
+          <h2 class="section-title">What I've been up to</h2>
+          <div class="grid" id="projects"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="warp" aria-hidden="true">ESTABLISHING NEURAL LINK...</div>
+
+    <script>
+      // mediaUrl: drop a .webm/.mp4/.png/.webp into /media and point to it here.
+      // Repos without media fall back to their GitHub social preview image.
+      const gh = (repo) => 'https://github.com/AbdulDag/' + repo;
+      const og = (repo) => 'https://opengraph.githubassets.com/1/AbdulDag/' + repo;
+
+      const projects = [
+        {
+          title: 'Livestock Gait Anomaly Detection',
+          description: 'YOLOv8-Pose pipeline that tracks cow joint angles to catch lameness early\nUniversity of Guelph research',
+          mediaUrl: og('livestock-anomaly-detection'),
+          githubUrl: gh('livestock-anomaly-detection'),
+        },
+        {
+          title: 'iLert',
+          description: 'Real-time driver drowsiness monitor using YOLO and ResNet\n1st Place, SproutHacks',
+        },
+        {
+          title: 'Multimodal Gesture Annotator',
+          description: 'On-device tool pairing Whisper and Llama 3.2 Vision to classify speech-gesture co-occurrence\nAlgoverse AI Research',
+        },
+        {
+          title: 'Cattle Health Classifier',
+          description: 'CNN that tells healthy from sick cattle off 216 images, served through a Flask API on Google Cloud',
+          mediaUrl: og('Cattle-Health-Classification-Model'),
+          githubUrl: gh('Cattle-Health-Classification-Model'),
+        },
+        {
+          title: 'SafeTriage',
+          description: 'Portable edge device that fuses SpO2 and heart-rate sensors to triage patients in under a second',
+        },
+        {
+          title: 'Interlock',
+          description: 'A secure escrow and negotiation platform for AI agents transacting with each other',
+        },
+        {
+          title: 'Web Serial Projection',
+          description: 'Browser-based control system that syncs 3D projection mapping with physical hardware',
+          mediaUrl: og('web-serial-projection'),
+          githubUrl: gh('web-serial-projection'),
+        },
+        {
+          title: 'Self-Driving NEAT Agent',
+          description: 'A 2D car that teaches itself to drive through neuroevolution',
+          mediaUrl: og('Self-Driving-NEAT-Agent'),
+          githubUrl: gh('Self-Driving-NEAT-Agent'),
+        },
+        {
+          title: 'AXI4-Lite UVM VIP',
+          description: 'SystemVerilog/UVM verification environment for an AXI4-Lite slave',
+          mediaUrl: og('axi4_lite_uvm_vip'),
+          githubUrl: gh('axi4_lite_uvm_vip'),
+        },
+        {
+          title: 'Access Control Dashboard',
+          description: 'React diagnostic dashboard and automation scripts keeping 450+ physical access points in sync\nBridge I.T',
+        },
+        {
+          title: '3D Printing Venture',
+          description: 'Started a 3D printing business that brought in $3,000+ in revenue',
+        },
+        {
+          title: 'CogniLabel Image Downscaler',
+          description: 'Pipeline that shrinks 200MP images to 20MP to cut memory use while logging every resolution change',
+          mediaUrl: og('cognilabel-image-downscaler'),
+          githubUrl: gh('cognilabel-image-downscaler'),
+        },
+        {
+          title: 'Drowsiness Detection Workshop',
+          description: 'OpenCV + MediaPipe drowsiness detector, taught as an IEEE Guelph ML workshop',
+          mediaUrl: og('Drowsy-Detection-Workshop'),
+          githubUrl: gh('Drowsy-Detection-Workshop'),
+        },
+      ];
+
+      const isVideo = (url) => /\.(webm|mp4)$/i.test(url);
+
+      const grid = document.getElementById('projects');
+      for (const p of projects) {
+        const card = document.createElement('a');
+        card.className = 'card';
+        if (p.githubUrl) {
+          card.href = p.githubUrl;
+          card.target = '_blank';
+          card.rel = 'noopener noreferrer';
+        }
+
+        const media = document.createElement('div');
+        media.className = 'card-media';
+        if (p.mediaUrl && isVideo(p.mediaUrl)) {
+          const v = document.createElement('video');
+          Object.assign(v, { src: p.mediaUrl, autoplay: true, muted: true, loop: true, playsInline: true });
+          media.appendChild(v);
+        } else if (p.mediaUrl) {
+          const img = document.createElement('img');
+          Object.assign(img, { src: p.mediaUrl, alt: p.title, loading: 'lazy' });
+          media.appendChild(img);
+        } else {
+          const ph = document.createElement('div');
+          ph.className = 'placeholder';
+          ph.textContent = p.title;
+          media.appendChild(ph);
+        }
+
+        const body = document.createElement('div');
+        body.className = 'card-body';
+        const h3 = document.createElement('h3');
+        h3.textContent = p.title;
+        const desc = document.createElement('p');
+        desc.textContent = p.description;
+        body.append(h3, desc);
+
+        card.append(media, body);
+        grid.appendChild(card);
+      }
+
+      // the super secret button: fade into the classic site's boot screen, then go there
+      document.getElementById('secret').addEventListener('click', () => {
+        const warp = document.getElementById('warp');
+        warp.classList.add('on');
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        setTimeout(() => { window.location.href = 'classic/'; }, reduce ? 0 : 700);
+      });
+    </script>
+  </body>
+</html>
