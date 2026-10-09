@@ -89,10 +89,8 @@
     </div>
 
     <script>
-      // mediaUrl: drop a .webm/.mp4/.png/.webp into /media and point to it here.
-      // Repos without media fall back to their GitHub social preview image.
+      // mediaUrl: a .mp4/.jpg in /media, or an array of images for a slideshow.
       const gh = (repo) => 'https://github.com/AbdulDag/' + repo;
-      const og = (repo) => 'https://opengraph.githubassets.com/1/AbdulDag/' + repo;
 
       const projects = [
         {
@@ -120,16 +118,19 @@
           githubUrl: 'https://devpost.com/software/auditflow',
         },
         {
-          title: 'iLert',
-          description: 'Real-time driver drowsiness monitor using YOLO and ResNet\n1st Place, SproutHacks',
+          title: 'FABLOOP',
+          description: 'Material exchange platform and SolidWorks add-in that uses a computer vision sorting model to design with scrap steel, cutting disposal costs 40%\n1st Place, GEC 2026 Re-Design',
+          mediaUrl: 'media/fabloop.jpg',
         },
         {
-          title: 'Multimodal Gesture Annotator',
-          description: 'On-device tool pairing Whisper and Llama 3.2 Vision to classify speech-gesture co-occurrence\nAlgoverse AI Research',
+          title: 'H2@Home',
+          description: 'Smart residential hydrogen system for safe, decentralized fuel production\n1st Place, GEC 2025 Innovative Design · Ingenious+ Ontario winner',
+          mediaUrl: 'media/h2home.jpg',
+          githubUrl: 'https://ingeniousplus.ca/ontario-2026/',
         },
         {
           title: 'EntryVision',
-          description: 'Face-recognition door lock: OpenCV checks faces against an approved list and an Arduino releases the electromagnetic lock\nSproutHacks',
+          description: 'Face-recognition door lock: OpenCV checks faces against an approved list and an Arduino releases the electromagnetic lock\n1st Place, SproutHacks',
           mediaUrl: ['media/entryvision_1.jpg', 'media/entryvision_2.jpg'],
           githubUrl: 'https://devpost.com/software/entryvision',
         },
@@ -140,29 +141,15 @@
           githubUrl: 'https://devpost.com/software/karen-5g01yk',
         },
         {
-          title: 'SafeTriage',
-          description: 'Portable edge device that fuses SpO2 and heart-rate sensors to triage patients in under a second',
-        },
-        {
-          title: 'Interlock',
-          description: 'A secure escrow and negotiation platform for AI agents transacting with each other',
-        },
-        {
           title: 'Web Serial Projection',
           description: 'Browser-based control system that syncs 3D projection mapping with physical hardware',
-          mediaUrl: og('web-serial-projection'),
+          mediaUrl: 'media/projection.mp4',
           githubUrl: gh('web-serial-projection'),
         },
         {
-          title: 'Self-Driving NEAT Agent',
-          description: 'A 2D car that teaches itself to drive through neuroevolution',
-          mediaUrl: og('Self-Driving-NEAT-Agent'),
-          githubUrl: gh('Self-Driving-NEAT-Agent'),
-        },
-        {
-          title: 'AXI4-Lite UVM VIP',
-          description: 'SystemVerilog/UVM verification environment for an AXI4-Lite slave',
-          mediaUrl: og('axi4_lite_uvm_vip'),
+          title: 'AXI4-Lite UVM Testbench',
+          description: 'SystemVerilog/UVM testbench that checks an AXI4-Lite bus slave reads and writes correctly',
+          mediaUrl: 'media/axi4.jpg',
           githubUrl: gh('axi4_lite_uvm_vip'),
         },
         {
@@ -174,18 +161,6 @@
           title: '3D-Printed Mortise Repair',
           description: 'Designed and 3D-printed a custom repair for 138 fire-rated doors with over-drilled mortise holes, saving the client $90,000+ in rework\nBridge I.T',
           mediaUrl: ['media/printing_1.jpg', 'media/printing_2.jpg', 'media/printing_3.jpg', 'media/printing_4.jpg'],
-        },
-        {
-          title: 'CogniLabel Image Downscaler',
-          description: 'Pipeline that shrinks 200MP images to 20MP to cut memory use while logging every resolution change',
-          mediaUrl: og('cognilabel-image-downscaler'),
-          githubUrl: gh('cognilabel-image-downscaler'),
-        },
-        {
-          title: 'Drowsiness Detection Workshop',
-          description: 'OpenCV + MediaPipe drowsiness detector, taught as an IEEE Guelph ML workshop',
-          mediaUrl: og('Drowsy-Detection-Workshop'),
-          githubUrl: gh('Drowsy-Detection-Workshop'),
         },
         {
           title: 'Livestock Gait Anomaly Detection',
