@@ -3,8 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Abdulhamid Daghistani's Website</title>
-    <meta name="description" content="Abdulhamid Daghistani — Mechatronics Engineering @ University of Guelph. ML, computer vision, and systems." />
+    <title>Abdulhamid Daghistani</title>
+    <meta name="description" content="i love computer vision and automation, and combining the two to build robotic systems. mechatronics engineering at the university of guelph." />
+    <meta name="author" content="Abdulhamid Daghistani" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://abduldag.com/" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Abdulhamid Daghistani" />
+    <meta property="og:title" content="Abdulhamid Daghistani" />
+    <meta property="og:description" content="i love computer vision and automation, and combining the two to build robotic systems." />
+    <meta property="og:url" content="https://abduldag.com/" />
+    <meta property="og:image" content="https://abduldag.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Abdulhamid Daghistani — computer vision, automation, and robotic systems" />
+    <meta property="profile:first_name" content="Abdulhamid" />
+    <meta property="profile:last_name" content="Daghistani" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Abdulhamid Daghistani" />
+    <meta name="twitter:description" content="i love computer vision and automation, and combining the two to build robotic systems." />
+    <meta name="twitter:image" content="https://abduldag.com/og-image.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://abduldag.com/#website",
+            "url": "https://abduldag.com/",
+            "name": "Abdulhamid Daghistani",
+            "alternateName": ["Abdul Daghistani", "abduldag"],
+            "publisher": { "@id": "https://abduldag.com/#person" }
+          },
+          {
+            "@type": "ProfilePage",
+            "@id": "https://abduldag.com/#profile",
+            "url": "https://abduldag.com/",
+            "name": "Abdulhamid Daghistani",
+            "isPartOf": { "@id": "https://abduldag.com/#website" },
+            "mainEntity": { "@id": "https://abduldag.com/#person" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://abduldag.com/#person",
+            "name": "Abdulhamid Daghistani",
+            "alternateName": "Abdul Daghistani",
+            "givenName": "Abdulhamid",
+            "familyName": "Daghistani",
+            "url": "https://abduldag.com/",
+            "image": "https://abduldag.com/og-image.png",
+            "email": "mailto:adaghist@gmail.com",
+            "jobTitle": "Mechatronics Engineering Student",
+            "description": "Abdulhamid Daghistani is a mechatronics engineering student at the University of Guelph who builds computer vision and automation systems for robotics. He co-developed CadX, a SolidWorks add-in piloted by 50 mechanical engineers, and has won first place at SproutHacks and the Guelph Engineering Competition.",
+            "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Guelph", "sameAs": "https://www.uoguelph.ca/" },
+            "knowsAbout": ["Computer Vision", "Machine Learning", "Automation", "Robotics", "Mechatronics", "YOLOv8", "PyTorch", "SolidWorks", "FPGA", "SystemVerilog"],
+            "award": [
+              "1st Place, SproutHacks (EntryVision)",
+              "1st Place, Guelph Engineering Competition 2026 Re-Design (FABLOOP)",
+              "1st Place, Guelph Engineering Competition 2025 Innovative Design (H2@Home)",
+              "Ingenious+ Ontario Regional Winner 2026 (H2@Home)"
+            ],
+            "sameAs": [
+              "https://github.com/AbdulDag",
+              "https://www.linkedin.com/in/abdulhamid-daghistani",
+              "https://devpost.com/Abdo123"
+            ]
+          }
+        ]
+      }
+    </script>
     <script>
       // apply saved theme before first paint so there's no flash; default is light
       (function () {
@@ -145,7 +220,7 @@
           <section class="about">
             <h1>Abdulhamid Daghistani</h1>
             <div class="about-inner">
-              <p>I build machines that see and think</p>
+              <p>I love computer vision and automation, and combining the two to build robotic systems</p>
               <div class="links">
                 <a href="https://github.com/AbdulDag" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href="https://linkedin.com/in/abdulhamid-daghistani" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -156,6 +231,23 @@
 
           <h2 class="section-title">What I've been up to</h2>
           <div class="grid" id="projects"></div>
+          <noscript>
+            <ul class="grid">
+              <li><h3><a href="https://github.com/AbdulDag/Cattle-Health-Classification-Model">Cattle Health Classifier</a></h3><p>CNN that tells healthy from sick cattle off 216 images, served through a Flask API on Google Cloud — University of Guelph research</p></li>
+              <li><h3><a href="https://caltech-hackathon.vercel.app/">Parivo Health</a></h3><p>Parkinson's and dementia monitoring from a 20-second weekly check-in: tremor, voice, and facial biomarkers fused into risk scores — Caltech Longevity Hackathon</p></li>
+              <li><h3><a href="https://www.getcadx.com/">CadX</a></h3><p>C# SolidWorks add-in that automates drawing exports and file naming — Live pilot with 50 concurrent mechanical engineering users</p></li>
+              <li><h3><a href="https://devpost.com/software/auditflow">AuditFlow</a></h3><p>Runs ML papers' code in sandboxed Docker containers, self-heals broken environments with a ReAct agent, and scores reproducibility — GDG Hacks 3</p></li>
+              <li><h3>FABLOOP</h3><p>Material exchange platform and SolidWorks add-in that uses a computer vision sorting model to design with scrap steel, cutting disposal costs 40% — 1st Place, GEC 2026 Re-Design</p></li>
+              <li><h3><a href="https://ingeniousplus.ca/ontario-2026/">H2@Home</a></h3><p>Smart residential hydrogen system for safe, decentralized fuel production — 1st Place, GEC 2025 Innovative Design · Ingenious+ Ontario winner</p></li>
+              <li><h3><a href="https://devpost.com/software/entryvision">EntryVision</a></h3><p>Face-recognition door lock: OpenCV checks faces against an approved list and an Arduino releases the electromagnetic lock — 1st Place, SproutHacks</p></li>
+              <li><h3><a href="https://devpost.com/software/karen-5g01yk">K.A.R.E.N</a></h3><p>The world's meanest FPGA-powered assistant: SystemVerilog video pipeline, Breakout in hardware, Gemini-driven voice nagging — uOttaHack 8</p></li>
+              <li><h3><a href="https://github.com/AbdulDag/web-serial-projection">Web Serial Projection</a></h3><p>Browser-based control system that syncs 3D projection mapping with physical hardware</p></li>
+              <li><h3><a href="https://github.com/AbdulDag/axi4_lite_uvm_vip">AXI4-Lite UVM Testbench</a></h3><p>SystemVerilog/UVM testbench that checks an AXI4-Lite bus slave reads and writes correctly</p></li>
+              <li><h3>Access Control Automation</h3><p>Python/PowerShell automation on an access-control platform's undocumented REST API that registered 10,795 doors across 8 sites with zero errors — Bridge I.T</p></li>
+              <li><h3>3D-Printed Mortise Repair</h3><p>Designed and 3D-printed a custom repair for 138 fire-rated doors with over-drilled mortise holes, saving the client $90,000+ in rework — Bridge I.T</p></li>
+              <li><h3><a href="https://github.com/AbdulDag/livestock-anomaly-detection">Livestock Gait Anomaly Detection</a></h3><p>YOLOv8-Pose pipeline that tracks cow joint angles to catch lameness early — University of Guelph research</p></li>
+            </ul>
+          </noscript>
         </div>
       </div>
     </div>
