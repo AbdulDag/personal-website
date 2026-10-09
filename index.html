@@ -5,39 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Abdulhamid Daghistani's Website</title>
     <meta name="description" content="Abdulhamid Daghistani — Mechatronics Engineering @ University of Guelph. ML, computer vision, and systems." />
+    <script>
+      // apply saved/system theme before first paint so there's no flash
+      (function () {
+        var t = null;
+        try { t = localStorage.getItem('theme'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
     <style>
       :root {
+        --bg: #ffffff;
+        --heading: #000000;
+        --text: #374151;
+        --muted: #4b5563;
+        --faint: #9ca3af;
+        --card: #ffffff;
+        --border: #e5e7eb;
+        --media-bg: #f3f4f6;
+        --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        --toggle-bg: rgb(255 255 255 / 0.8);
+        --toggle-fg: #111827;
+        color-scheme: light;
+
         font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
         line-height: 1.5;
         font-weight: 400;
-        color: #213547;
-        background-color: #ffffff;
+        color: var(--text);
+        background-color: var(--bg);
         font-synthesis: none;
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
+      :root[data-theme="dark"] {
+        --bg: #0a0a0a;
+        --heading: #fafafa;
+        --text: #d4d4d8;
+        --muted: #a1a1aa;
+        --faint: #71717a;
+        --card: #111113;
+        --border: #232326;
+        --media-bg: #18181b;
+        --shadow: 0 10px 24px -6px rgb(0 0 0 / 0.7), 0 0 0 1px rgb(255 255 255 / 0.06);
+        --toggle-bg: rgb(24 24 27 / 0.8);
+        --toggle-fg: #fafafa;
+        color-scheme: dark;
+      }
 
       *, *::before, *::after { box-sizing: border-box; }
 
-      body { margin: 0; min-width: 320px; }
+      body { margin: 0; min-width: 320px; background: var(--bg); }
       h1, h2, h3, p { margin: 0; }
       a { color: inherit; text-decoration: inherit; }
 
       #root { margin: 0 auto; width: 100%; text-align: center; }
 
-      .page { min-height: 100vh; background: #ffffff; padding: 2rem; }
+      .page { min-height: 100vh; background: var(--bg); padding: 2rem; }
       .container { max-width: 72rem; margin: 0 auto; }
 
       .about { margin-top: 7.5rem; margin-bottom: 6.5rem; }
-      .about h1 { font-size: 2.25rem; line-height: 2.5rem; color: #000; font-weight: 700; margin-bottom: 1rem; }
+      .about h1 { font-size: 2.25rem; line-height: 2.5rem; color: var(--heading); font-weight: 700; margin-bottom: 1rem; }
       .about-inner { max-width: 42rem; margin: 0 auto; }
-      .about p { color: #374151; font-size: 1.125rem; line-height: 1.75rem; margin-bottom: 1rem; }
+      .about p { color: var(--text); font-size: 1.125rem; line-height: 1.75rem; margin-bottom: 1rem; }
       .links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-      .links a { color: #374151; font-weight: 500; transition: color 150ms; }
-      .links a:hover { color: #000; }
+      .links a { color: var(--text); font-weight: 500; transition: color 150ms; }
+      .links a:hover { color: var(--heading); }
 
-      .section-title { font-size: 1.5rem; line-height: 2rem; color: #000; font-weight: 700; margin-bottom: 2rem; }
+      .section-title { font-size: 1.5rem; line-height: 2rem; color: var(--heading); font-weight: 700; margin-bottom: 2rem; }
 
       .grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
       @media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
@@ -45,28 +81,64 @@
 
       .card {
         display: block;
-        background: #fff;
-        border: 1px solid #e5e7eb;
+        background: var(--card);
+        border: 1px solid var(--border);
         border-radius: 0.5rem;
         overflow: hidden;
         transition: box-shadow 150ms;
       }
-      .card:hover { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
-      .card-media { position: relative; aspect-ratio: 16 / 9; background: #f3f4f6; }
+      .card:hover { box-shadow: var(--shadow); }
+      .card-media { position: relative; aspect-ratio: 16 / 9; background: var(--media-bg); }
       .card-media img, .card-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
       .card-media .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 800ms ease; }
       .card-media .slide.on { opacity: 1; }
       .card-media .placeholder {
         width: 100%; height: 100%;
         display: flex; align-items: center; justify-content: center;
-        padding: 1rem; color: #9ca3af; font-size: 1.25rem; font-weight: 600;
+        padding: 1rem; color: var(--faint); font-size: 1.25rem; font-weight: 600;
       }
       .card-body { padding: 1rem; }
-      .card-body h3 { color: #374151; font-size: 1rem; line-height: 1.5rem; font-weight: 400; }
-      .card-body p { color: #4b5563; font-size: 0.875rem; line-height: 1.25rem; white-space: pre-line; }
+      .card-body h3 { color: var(--text); font-size: 1rem; line-height: 1.5rem; font-weight: 400; }
+      .card-body p { color: var(--muted); font-size: 0.875rem; line-height: 1.25rem; white-space: pre-line; }
+
+      /* theme toggle */
+      .theme-toggle {
+        position: fixed; top: 1.25rem; right: 1.25rem; z-index: 50;
+        width: 2.75rem; height: 2.75rem; padding: 0;
+        display: grid; place-items: center;
+        border-radius: 9999px;
+        border: 1px solid var(--border);
+        background: var(--toggle-bg);
+        color: var(--toggle-fg);
+        backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .theme-toggle:focus-visible { outline: 2px solid var(--toggle-fg); outline-offset: 3px; }
+      .theme-toggle svg { width: 1.25rem; height: 1.25rem; overflow: visible; }
+
+      /* circular reveal: GSAP drives --vt-r while the browser swaps snapshots */
+      ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+      ::view-transition-new(root) { clip-path: circle(var(--vt-r, 0px) at var(--vt-x, 100%) var(--vt-y, 0px)); }
     </style>
   </head>
   <body>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <mask id="moon-mask">
+          <rect x="-4" y="-4" width="32" height="32" fill="#fff" />
+          <circle id="moon-bite" cx="30" cy="4" r="8" fill="#000" />
+        </mask>
+        <circle id="sun-core" cx="12" cy="12" r="5" fill="currentColor" stroke="none" mask="url(#moon-mask)" />
+        <g id="sun-rays">
+          <line x1="12" y1="1.5" x2="12" y2="3.5" /><line x1="12" y1="20.5" x2="12" y2="22.5" />
+          <line x1="1.5" y1="12" x2="3.5" y2="12" /><line x1="20.5" y1="12" x2="22.5" y2="12" />
+          <line x1="4.6" y1="4.6" x2="6" y2="6" /><line x1="18" y1="18" x2="19.4" y2="19.4" />
+          <line x1="4.6" y1="19.4" x2="6" y2="18" /><line x1="18" y1="6" x2="19.4" y2="4.6" />
+        </g>
+      </svg>
+    </button>
+
     <div id="root">
       <div class="page">
         <div class="container">
@@ -225,6 +297,56 @@
         card.append(media, body);
         grid.appendChild(card);
       }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+      (function () {
+        const root = document.documentElement;
+        const btn = document.getElementById('theme-toggle');
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // icon states: light = sun, dark = moon
+        const icon = {
+          light: { core: { attr: { r: 5 } }, bite: { attr: { cx: 30, cy: 4 } }, rays: { scale: 1, rotate: 0, opacity: 1 } },
+          dark: { core: { attr: { r: 9 } }, bite: { attr: { cx: 17, cy: 7 } }, rays: { scale: 0, rotate: -90, opacity: 0 } },
+        };
+        function setIcon(theme, animate) {
+          const s = icon[theme], d = animate && !reduce ? 0.6 : 0;
+          gsap.to('#sun-core', { ...s.core, duration: d, ease: 'power3.inOut' });
+          gsap.to('#moon-bite', { ...s.bite, duration: d, ease: 'power3.inOut' });
+          gsap.to('#sun-rays', { ...s.rays, duration: d * 0.8, ease: theme === 'dark' ? 'power2.in' : 'back.out(2)', svgOrigin: '12 12', delay: theme === 'light' ? d * 0.3 : 0 });
+          gsap.to('#theme-toggle svg', { rotate: theme === 'dark' ? 40 : 0, duration: d, ease: 'power3.inOut', transformOrigin: '50% 50%' });
+        }
+
+        function apply(theme) {
+          root.dataset.theme = theme;
+          try { localStorage.setItem('theme', theme); } catch (e) {}
+        }
+
+        setIcon(root.dataset.theme, false);
+
+        btn.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          setIcon(next, true);
+          gsap.fromTo(btn, { scale: 0.86 }, { scale: 1, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
+
+          if (!document.startViewTransition || reduce) { apply(next); return; }
+
+          // reveal the new theme as a circle growing out of the button
+          const r = btn.getBoundingClientRect();
+          const x = r.left + r.width / 2, y = r.top + r.height / 2;
+          const end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+          gsap.set(root, { '--vt-x': x + 'px', '--vt-y': y + 'px', '--vt-r': '0px' });
+
+          const vt = document.startViewTransition(() => apply(next));
+          vt.ready.then(() => new Promise((done) => {
+            gsap.to(root, { '--vt-r': end + 'px', duration: 0.7, ease: 'power3.inOut', onComplete: done });
+          })).catch(() => {});
+        });
+
+        btn.addEventListener('mouseenter', () => !reduce && gsap.to(btn, { scale: 1.08, duration: 0.3, ease: 'power2.out' }));
+        btn.addEventListener('mouseleave', () => gsap.to(btn, { scale: 1, duration: 0.3, ease: 'power2.out' }));
+      })();
     </script>
   </body>
 </html>
