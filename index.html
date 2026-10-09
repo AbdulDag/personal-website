@@ -54,6 +54,8 @@
       .card:hover { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
       .card-media { position: relative; aspect-ratio: 16 / 9; background: #f3f4f6; }
       .card-media img, .card-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .card-media .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 800ms ease; }
+      .card-media .slide.on { opacity: 1; }
       .card-media .placeholder {
         width: 100%; height: 100%;
         display: flex; align-items: center; justify-content: center;
@@ -106,6 +108,12 @@
         {
           title: 'Multimodal Gesture Annotator',
           description: 'On-device tool pairing Whisper and Llama 3.2 Vision to classify speech-gesture co-occurrence\nAlgoverse AI Research',
+        },
+        {
+          title: 'EntryVision',
+          description: 'Face-recognition door lock: OpenCV checks faces against an approved list and an Arduino releases the electromagnetic lock\nSproutHacks',
+          mediaUrl: ['media/entryvision_1.jpg', 'media/entryvision_2.jpg'],
+          githubUrl: 'https://devpost.com/software/entryvision',
         },
         {
           title: 'SafeTriage',
@@ -175,7 +183,22 @@
 
         const media = document.createElement('div');
         media.className = 'card-media';
-        if (p.mediaUrl && isVideo(p.mediaUrl)) {
+        if (Array.isArray(p.mediaUrl)) {
+          // several photos: crossfade between them
+          const imgs = p.mediaUrl.map((src, i) => {
+            const img = document.createElement('img');
+            Object.assign(img, { src, alt: p.title, loading: 'lazy' });
+            img.className = 'slide' + (i === 0 ? ' on' : '');
+            media.appendChild(img);
+            return img;
+          });
+          let cur = 0;
+          setInterval(() => {
+            imgs[cur].classList.remove('on');
+            cur = (cur + 1) % imgs.length;
+            imgs[cur].classList.add('on');
+          }, 3000);
+        } else if (p.mediaUrl && isVideo(p.mediaUrl)) {
           const v = document.createElement('video');
           Object.assign(v, { src: p.mediaUrl, autoplay: true, muted: true, loop: true, playsInline: true });
           media.appendChild(v);
