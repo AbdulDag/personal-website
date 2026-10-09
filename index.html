@@ -6,11 +6,11 @@
     <title>Abdulhamid Daghistani's Website</title>
     <meta name="description" content="Abdulhamid Daghistani — Mechatronics Engineering @ University of Guelph. ML, computer vision, and systems." />
     <script>
-      // apply saved/system theme before first paint so there's no flash
+      // apply saved theme before first paint so there's no flash; default is light
       (function () {
         var t = null;
         try { t = localStorage.getItem('theme'); } catch (e) {}
-        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        if (t !== 'dark') t = 'light';
         document.documentElement.dataset.theme = t;
       })();
     </script>
