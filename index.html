@@ -37,20 +37,6 @@
       .links a { color: #374151; font-weight: 500; transition: color 150ms; }
       .links a:hover { color: #000; }
 
-      .secret {
-        margin-top: 1.25rem;
-        font: inherit;
-        font-size: 0.75rem;
-        color: #9ca3af;
-        background: none;
-        border: 1px dashed #d1d5db;
-        border-radius: 9999px;
-        padding: 0.25rem 0.75rem;
-        cursor: pointer;
-        transition: color 150ms, border-color 150ms;
-      }
-      .secret:hover { color: #000; border-color: #000; }
-
       .section-title { font-size: 1.5rem; line-height: 2rem; color: #000; font-weight: 700; margin-bottom: 2rem; }
 
       .grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
@@ -76,19 +62,6 @@
       .card-body { padding: 1rem; }
       .card-body h3 { color: #374151; font-size: 1rem; line-height: 1.5rem; font-weight: 400; }
       .card-body p { color: #4b5563; font-size: 0.875rem; line-height: 1.25rem; white-space: pre-line; }
-
-      /* transition into the classic site — matches its boot screen */
-      #warp {
-        position: fixed; inset: 0; z-index: 9999;
-        background: #050505;
-        display: flex; align-items: center; justify-content: center;
-        color: #79d2e6; font-family: 'Courier New', Courier, monospace;
-        font-size: 1.2rem; letter-spacing: 4px; text-align: center; padding: 1rem;
-        opacity: 0; pointer-events: none;
-        transition: opacity 600ms ease;
-      }
-      #warp.on { opacity: 1; pointer-events: auto; }
-      @media (prefers-reduced-motion: reduce) { #warp { transition: none; } }
     </style>
   </head>
   <body>
@@ -104,7 +77,6 @@
                 <a href="https://linkedin.com/in/abdulhamid-daghistani" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <a href="mailto:Dagabdoo@gmail.com">Email</a>
               </div>
-              <button class="secret" id="secret" type="button">super secret button</button>
             </div>
           </section>
 
@@ -113,8 +85,6 @@
         </div>
       </div>
     </div>
-
-    <div id="warp" aria-hidden="true">ESTABLISHING NEURAL LINK...</div>
 
     <script>
       // mediaUrl: drop a .webm/.mp4/.png/.webp into /media and point to it here.
@@ -231,14 +201,6 @@
         card.append(media, body);
         grid.appendChild(card);
       }
-
-      // the super secret button: fade into the classic site's boot screen, then go there
-      document.getElementById('secret').addEventListener('click', () => {
-        const warp = document.getElementById('warp');
-        warp.classList.add('on');
-        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        setTimeout(() => { window.location.href = 'classic/'; }, reduce ? 0 : 700);
-      });
     </script>
   </body>
 </html>
